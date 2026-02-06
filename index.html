@@ -7,13 +7,16 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Falling hearts background -->
     <div class="hearts-container" id="heartsContainer"></div>
     
-    <!-- Main content -->
     <div class="container">
-        <div class="content" id="mainContent">
-            <!-- Flower animation -->
+        <div class="name-input-section" id="nameInputSection">
+            <h2 class="title">Wait! Who am I asking?</h2>
+            <input type="text" id="userName" placeholder="Enter your name..." class="input-field">
+            <button class="btn btn-yes" onclick="startQuestion()">Enter</button>
+        </div>
+
+        <div class="content" id="mainContent" style="display: none;">
             <div class="flower-container">
                 <div class="flower">
                     <div class="petal petal-1"></div>
@@ -25,7 +28,7 @@
                 </div>
             </div>
             
-            <h1 class="title">Will you be my Valentine? 💘</h1>
+            <h1 class="title"><span id="displayName"></span>, will you be my Valentine? 💘</h1>
             
             <div class="buttons-container" id="buttonsContainer">
                 <button class="btn btn-yes" id="yesBtn">
@@ -37,19 +40,30 @@
             </div>
         </div>
         
-        <!-- Success message (hidden initially) -->
         <div class="success-message" id="successMessage">
             <div class="beating-heart">❤️</div>
-            <h2 class="success-text">Yay! You just made me the happiest person 💕</h2>
+            <h2 class="success-text">Yay! <span id="successName"></span>, you just made me the happiest person 💕</h2>
             <div class="gif-container">
-                <img src="woohoo-yay.gif" alt="Happy Valentine GIF" class="celebration-gif">
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcXN5Ym9jbzZqbWF5dGE5Y3JsOGF3YjNxN3p6OHdxYm1rZGFzcG9tYyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o6Zt6ML6BklcajjsA/giphy.gif" alt="Happy Valentine GIF" class="celebration-gif">
             </div>
         </div>
     </div>
     
-    <!-- Confetti canvas -->
     <canvas id="confettiCanvas"></canvas>
-    
     <script src="script.js"></script>
+
+    <script>
+        function startQuestion() {
+            const name = document.getElementById('userName').value;
+            if (name.trim() !== "") {
+                document.getElementById('nameInputSection').style.display = 'none';
+                document.getElementById('mainContent').style.display = 'block';
+                document.getElementById('displayName').innerText = name;
+                document.getElementById('successName').innerText = name;
+            } else {
+                alert("Please enter a name! ❤️");
+            }
+        }
+    </script>
 </body>
 </html>
